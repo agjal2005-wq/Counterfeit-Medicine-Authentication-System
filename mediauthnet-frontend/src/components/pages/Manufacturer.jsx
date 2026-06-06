@@ -227,38 +227,213 @@
 
 
 
+// import "../../css/Role.css";
+// import { LinkButton } from "../LinkButton";
+// import { Box, Button as Btn, Typography, Paper } from "@mui/material";
+// import LogoutIcon from "@mui/icons-material/Logout";
+// import AddBoxIcon from "@mui/icons-material/AddBox";
+// import ImageIcon from "@mui/icons-material/Image";
+// import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+// import FolderIcon from "@mui/icons-material/Folder";
+
+// const Manufacturer = () => {
+//   return (
+//     <Box
+//       sx={{
+//         minHeight: "100vh",
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         padding: "20px",
+//       }}
+//     >
+//       <Paper
+//         elevation={5}
+//         sx={{
+//           width: "450px",
+//           padding: "35px 30px",
+//           backgroundColor: "#e8f0fe",
+//           borderRadius: "16px",
+//           textAlign: "center",
+//           position: "relative",
+//         }}
+//       >
+//         {/* Logout Button */}
+//         <Box
+//           sx={{
+//             position: "absolute",
+//             top: 15,
+//             right: 15,
+//           }}
+//         >
+//           <Btn
+//             href="/login"
+//             variant="contained"
+//             color="error"
+//             endIcon={<LogoutIcon />}
+//             sx={{
+//               fontWeight: 600,
+//               padding: "4px 10px",
+//               fontSize: "0.75rem",
+//               minWidth: "90px",
+//             }}
+//           >
+//             Logout
+//           </Btn>
+//         </Box>
+
+//         {/* Title */}
+//         <Typography
+//           variant="h4"
+//           sx={{
+//             fontWeight: "800",
+//             color: "#0F1B4C",
+//             mb: 1,
+//           }}
+//         >
+//           Manufacturer
+//         </Typography>
+
+//         <Typography
+//           variant="h5"
+//           sx={{
+//             fontWeight: "bold",
+//             color: "#0F1B4C",
+//             mb: 3,
+//           }}
+//         >
+//           Dashboard
+//         </Typography>
+
+//         {/* Description */}
+//         <Typography
+//           variant="body1"
+//           sx={{
+//             mb: 4,
+//             maxWidth: "500px",
+//             color: "#4F5361",
+//             textAlign: "center",
+//             lineHeight: "1.6rem",
+//             margin: "0 auto",
+//           }}
+//         >
+//           You are responsible for adding authentic medicine data to the system.
+//           Your packaging images help train the Federated Learning model to
+//           recognize genuine medicines with high accuracy.
+//         </Typography>
+
+//         {/* Buttons */}
+//         <Box sx={{ width: "100%", maxWidth: "380px", margin: "0 auto" }}>
+//           <LinkButton
+//             to="/profile"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//           >
+//             <AccountCircleIcon style={{ marginRight: "8px" }} />
+//             View Profile
+//           </LinkButton>
+
+//           <LinkButton
+//             to="/add-product"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//           >
+//             <AddBoxIcon style={{ marginRight: "8px" }} />
+//             Add New Medicine
+//           </LinkButton>
+
+//           <LinkButton
+//             to="/upload-training-images"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//           >
+//             <ImageIcon style={{ marginRight: "8px" }} />
+//             Upload Packaging Images (FL Training)
+//           </LinkButton>
+
+//           <LinkButton
+//             to="/manufacturer-dataset"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//           >
+//             <FolderIcon style={{ marginRight: "8px" }} />
+//             View My Dataset
+//           </LinkButton>
+//         </Box>
+//       </Paper>
+//     </Box>
+//   );
+// };
+
+// export default Manufacturer;
+
+
+
 import "../../css/Role.css";
+
 import { LinkButton } from "../LinkButton";
-import { Box, Button as Btn, Typography, Paper } from "@mui/material";
+
+import {
+  Box,
+  Button as Btn,
+  Typography,
+  Paper
+} from "@mui/material";
+
 import LogoutIcon from "@mui/icons-material/Logout";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import ImageIcon from "@mui/icons-material/Image";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FolderIcon from "@mui/icons-material/Folder";
 
+import bgImage from "../../img/bg.png";
+
 const Manufacturer = () => {
+
   return (
     <Box
       sx={{
         minHeight: "100vh",
+
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+
         padding: "20px",
+
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
       }}
     >
+
       <Paper
-        elevation={5}
+        elevation={8}
         sx={{
           width: "450px",
+
           padding: "35px 30px",
-          backgroundColor: "#e8f0fe",
-          borderRadius: "16px",
+
+          backgroundColor: "rgba(255,255,255,0.92)",
+
+          backdropFilter: "blur(10px)",
+
+          borderRadius: "18px",
+
           textAlign: "center",
+
           position: "relative",
         }}
       >
-        {/* Logout Button */}
+
+        {/* =========================
+            LOGOUT BUTTON
+        ========================== */}
         <Box
           sx={{
             position: "absolute",
@@ -266,6 +441,7 @@ const Manufacturer = () => {
             right: 15,
           }}
         >
+
           <Btn
             href="/login"
             variant="contained"
@@ -280,9 +456,12 @@ const Manufacturer = () => {
           >
             Logout
           </Btn>
+
         </Box>
 
-        {/* Title */}
+        {/* =========================
+            TITLE
+        ========================== */}
         <Typography
           variant="h4"
           sx={{
@@ -305,7 +484,9 @@ const Manufacturer = () => {
           Dashboard
         </Typography>
 
-        {/* Description */}
+        {/* =========================
+            DESCRIPTION
+        ========================== */}
         <Typography
           variant="body1"
           sx={{
@@ -313,61 +494,90 @@ const Manufacturer = () => {
             maxWidth: "500px",
             color: "#4F5361",
             textAlign: "center",
-            lineHeight: "1.6rem",
+            lineHeight: "1.8rem",
             margin: "0 auto",
           }}
         >
-          You are responsible for adding authentic medicine data to the system.
-          Your packaging images help train the Federated Learning model to
-          recognize genuine medicines with high accuracy.
+          You are responsible for registering authentic medicines
+          on the <strong>Blockchain-Based Authentication System</strong>.
+          Your medicine records, QR codes, and batch information help
+          ensure secure, transparent, and tamper-proof pharmaceutical
+          supply chain verification.
         </Typography>
 
-        {/* Buttons */}
-        <Box sx={{ width: "100%", maxWidth: "380px", margin: "0 auto" }}>
+        {/* =========================
+            BUTTONS
+        ========================== */}
+        <Box
+          sx={{
+            width: "100%",
+            maxWidth: "380px",
+            margin: "0 auto",
+          }}
+        >
+
+          {/* View Profile */}
           <LinkButton
             to="/profile"
             className="btns"
             buttonStyle="btn--long"
             buttonSize="btn--large"
           >
-            <AccountCircleIcon style={{ marginRight: "8px" }} />
+            <AccountCircleIcon
+              style={{ marginRight: "8px" }}
+            />
+
             View Profile
           </LinkButton>
 
+          {/* Add Medicine */}
           <LinkButton
             to="/add-product"
             className="btns"
             buttonStyle="btn--long"
             buttonSize="btn--large"
           >
-            <AddBoxIcon style={{ marginRight: "8px" }} />
-            Add New Medicine
+            <AddBoxIcon
+              style={{ marginRight: "8px" }}
+            />
+
+            Register New Medicine
           </LinkButton>
 
+          {/* Upload QR / Packaging */}
           <LinkButton
             to="/upload-training-images"
             className="btns"
             buttonStyle="btn--long"
             buttonSize="btn--large"
           >
-            <ImageIcon style={{ marginRight: "8px" }} />
-            Upload Packaging Images (FL Training)
+            <ImageIcon
+              style={{ marginRight: "8px" }}
+            />
+
+            Upload QR & Packaging Data
           </LinkButton>
 
+          {/* View Dataset */}
           <LinkButton
             to="/manufacturer-dataset"
             className="btns"
             buttonStyle="btn--long"
             buttonSize="btn--large"
           >
-            <FolderIcon style={{ marginRight: "8px" }} />
-            View My Dataset
+            <FolderIcon
+              style={{ marginRight: "8px" }}
+            />
+
+            View Blockchain Records
           </LinkButton>
+
         </Box>
+
       </Paper>
+
     </Box>
   );
 };
 
 export default Manufacturer;
-

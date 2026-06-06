@@ -222,40 +222,314 @@
 
 
 
+// import "../../css/Role.css";
+// import { LinkButton } from "../LinkButton";
+// import { Box, Button as Btn, Typography, Paper } from "@mui/material";
+// import LogoutIcon from "@mui/icons-material/Logout";
+// import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+// import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+// import InventoryIcon from "@mui/icons-material/Inventory";
+// import CameraAltIcon from "@mui/icons-material/CameraAlt";
+
+// const Supplier = () => {
+//   return (
+//     <Box
+//       sx={{
+//         minHeight: "100vh",
+//         background: "linear-gradient(135deg, #e8f0fe 0%, #d4e1ff 100%)",
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         padding: "30px",
+//       }}
+//     >
+//       <Paper
+//         elevation={6}
+//         sx={{
+//           width: "520px",
+//           padding: "40px 35px",
+//           borderRadius: "20px",
+//           backgroundColor: "rgba(255,255,255,0.9)",
+//           backdropFilter: "blur(10px)",
+//           textAlign: "center",
+//           position: "relative",
+//         }}
+//       >
+//         {/* Logout Button */}
+//         <Box
+//           sx={{
+//             position: "absolute",
+//             top: 8,
+//             right: 15,
+//           }}
+//         >
+//           <Btn
+//             href="/login"
+//             variant="contained"
+//             color="error"
+//             endIcon={<LogoutIcon />}
+//             sx={{
+//               fontWeight: 700,
+//               borderRadius: "10px",
+//               padding: "6px 14px",
+//             }}
+//           >
+//             Logout
+//           </Btn>
+//         </Box>
+
+//         {/* Title */}
+//         <Typography
+//           variant="h4"
+//           sx={{
+//             fontWeight: "900",
+//             color: "#0F1B4C",
+//             mb: 1,
+//             fontSize: "2rem",
+//           }}
+//         >
+//           Supplier Dashboard
+//         </Typography>
+
+//         {/* Description */}
+//         <Typography
+//           variant="body1"
+//           sx={{
+//             maxWidth: "480px",
+//             margin: "0 auto",
+//             color: "#4F5361",
+//             mb: 4,
+//             lineHeight: "1.7rem",
+//             fontSize: "1rem",
+//           }}
+//         >
+//           As a Supplier, you ensure secure transportation of medicines from
+//           manufacturers to retailers. Our Federated Learning AI helps you verify
+//           authenticity before receiving or dispatching shipments.
+//         </Typography>
+
+//         {/* Buttons Section */}
+//         <Box
+//           sx={{
+//             width: "100%",
+//             maxWidth: "420px",
+//             margin: "0 auto",
+//             display: "flex",
+//             flexDirection: "column",
+//             gap: 2.2,
+//           }}
+//         >
+//           {/* Profile Button */}
+//           <LinkButton
+//             to="/profile"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <InventoryIcon style={{ marginRight: "10px" }} />
+//             View Profile
+//           </LinkButton>
+
+//           {/* Verify using Scanner */}
+//           <LinkButton
+//             to="/scanner"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <CameraAltIcon style={{ marginRight: "10px" }} />
+//             Verify Product (QR / Image)
+//           </LinkButton>
+
+//           {/* Shipment Status */}
+//           <LinkButton
+//             to="/update-shipment"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <LocalShippingIcon style={{ marginRight: "10px" }} />
+//             Update Shipment Status
+//           </LinkButton>
+
+//           {/* Received Medicines */}
+//           <LinkButton
+//             to="/received-products"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <CheckCircleIcon style={{ marginRight: "10px" }} />
+//             View Received Medicines
+//           </LinkButton>
+//         </Box>
+//       </Paper>
+//     </Box>
+//   );
+// };
+
+// export default Supplier;
+
+
+
+
 import "../../css/Role.css";
+
 import { LinkButton } from "../LinkButton";
-import { Box, Button as Btn, Typography, Paper } from "@mui/material";
+
+import {
+  Box,
+  Button as Btn,
+  Typography,
+  Paper,
+  TextField
+} from "@mui/material";
+
+import { useState } from "react";
+
 import LogoutIcon from "@mui/icons-material/Logout";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 
+import bgImage from "../../img/bg.png";
+
+// BLOCKCHAIN
+import { connectWallet }
+from "../../blockchain/connectWallet";
+
 const Supplier = () => {
+
+  // =========================
+  // STATES
+  // =========================
+  const [serialNumber,
+    setSerialNumber] = useState("");
+
+  const [status,
+    setStatus] = useState("");
+
+  const [location,
+    setLocation] = useState("");
+
+  // =========================
+  // UPDATE BLOCKCHAIN SHIPMENT
+  // =========================
+  const updateBlockchainShipment =
+    async () => {
+
+    try {
+
+      // VALIDATION
+      if (
+        !serialNumber ||
+        !status ||
+        !location
+      ) {
+
+        alert(
+          "Please fill all fields"
+        );
+
+        return;
+      }
+
+      // CONNECT WALLET
+      const contract =
+        await connectWallet();
+
+      if (!contract) {
+
+        alert(
+          "Wallet connection failed"
+        );
+
+        return;
+      }
+
+      // BLOCKCHAIN TRANSACTION
+      const tx =
+        await contract.updateShipment(
+
+          serialNumber,
+
+          status,
+
+          location
+        );
+
+      alert(
+        "Waiting for blockchain confirmation..."
+      );
+
+      // WAIT FOR CONFIRMATION
+      await tx.wait();
+
+      console.log(tx);
+
+      alert(
+        "Shipment updated successfully on blockchain!"
+      );
+
+      // CLEAR FIELDS
+      setSerialNumber("");
+      setStatus("");
+      setLocation("");
+
+    } catch (error) {
+
+      console.log(error);
+
+      alert(
+        "Blockchain shipment update failed"
+      );
+    }
+  };
+
   return (
+
     <Box
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #e8f0fe 0%, #d4e1ff 100%)",
+
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+
         padding: "30px",
       }}
     >
+
       <Paper
-        elevation={6}
+        elevation={8}
         sx={{
           width: "520px",
+
           padding: "40px 35px",
+
           borderRadius: "20px",
-          backgroundColor: "rgba(255,255,255,0.9)",
+
+          backgroundColor: "rgba(255,255,255,0.92)",
+
           backdropFilter: "blur(10px)",
+
           textAlign: "center",
+
           position: "relative",
         }}
       >
-        {/* Logout Button */}
+
+        {/* LOGOUT */}
         <Box
           sx={{
             position: "absolute",
@@ -263,6 +537,7 @@ const Supplier = () => {
             right: 15,
           }}
         >
+
           <Btn
             href="/login"
             variant="contained"
@@ -276,9 +551,10 @@ const Supplier = () => {
           >
             Logout
           </Btn>
+
         </Box>
 
-        {/* Title */}
+        {/* TITLE */}
         <Typography
           variant="h4"
           sx={{
@@ -291,7 +567,7 @@ const Supplier = () => {
           Supplier Dashboard
         </Typography>
 
-        {/* Description */}
+        {/* DESCRIPTION */}
         <Typography
           variant="body1"
           sx={{
@@ -299,75 +575,160 @@ const Supplier = () => {
             margin: "0 auto",
             color: "#4F5361",
             mb: 4,
-            lineHeight: "1.7rem",
+            lineHeight: "1.8rem",
             fontSize: "1rem",
           }}
         >
-          As a Supplier, you ensure secure transportation of medicines from
-          manufacturers to retailers. Our Federated Learning AI helps you verify
-          authenticity before receiving or dispatching shipments.
+          Verify medicines and update
+          shipment records securely using
+          blockchain technology.
         </Typography>
 
-        {/* Buttons Section */}
+        {/* BUTTONS */}
         <Box
           sx={{
             width: "100%",
             maxWidth: "420px",
             margin: "0 auto",
+
             display: "flex",
             flexDirection: "column",
             gap: 2.2,
           }}
         >
-          {/* Profile Button */}
+
+          {/* PROFILE */}
           <LinkButton
             to="/profile"
             className="btns"
             buttonStyle="btn--long"
             buttonSize="btn--large"
-            style={{ fontSize: "1rem" }}
           >
-            <InventoryIcon style={{ marginRight: "10px" }} />
+            <InventoryIcon
+              style={{ marginRight: "10px" }}
+            />
+
             View Profile
           </LinkButton>
 
-          {/* Verify using Scanner */}
+          {/* VERIFY PRODUCT */}
           <LinkButton
             to="/scanner"
             className="btns"
             buttonStyle="btn--long"
             buttonSize="btn--large"
-            style={{ fontSize: "1rem" }}
           >
-            <CameraAltIcon style={{ marginRight: "10px" }} />
-            Verify Product (QR / Image)
+            <CameraAltIcon
+              style={{ marginRight: "10px" }}
+            />
+
+            Verify Product (QR / Batch)
           </LinkButton>
 
-          {/* Shipment Status */}
-          <LinkButton
-            to="/update-shipment"
-            className="btns"
-            buttonStyle="btn--long"
-            buttonSize="btn--large"
-            style={{ fontSize: "1rem" }}
-          >
-            <LocalShippingIcon style={{ marginRight: "10px" }} />
-            Update Shipment Status
-          </LinkButton>
+          {/* SERIAL NUMBER */}
+          <TextField
+            label="Serial Number"
 
-          {/* Received Medicines */}
+            variant="outlined"
+
+            fullWidth
+
+            value={serialNumber}
+
+            onChange={(e) =>
+              setSerialNumber(
+                e.target.value
+              )
+            }
+          />
+
+          {/* STATUS */}
+          <TextField
+            label="Shipment Status"
+
+            variant="outlined"
+
+            fullWidth
+
+            value={status}
+
+            onChange={(e) =>
+              setStatus(
+                e.target.value
+              )
+            }
+          />
+
+          {/* LOCATION */}
+          <TextField
+            label="Current Location"
+
+            variant="outlined"
+
+            fullWidth
+
+            value={location}
+
+            onChange={(e) =>
+              setLocation(
+                e.target.value
+              )
+            }
+          />
+
+          {/* UPDATE SHIPMENT */}
+          <Btn
+            variant="contained"
+
+            onClick={updateBlockchainShipment}
+
+            sx={{
+              backgroundColor: "#1976d2",
+
+              color: "white",
+
+              fontWeight: "700",
+
+              padding: "14px",
+
+              borderRadius: "10px",
+
+              fontSize: "1rem",
+
+              textTransform: "none",
+
+              "&:hover": {
+                backgroundColor: "#125aa0",
+              },
+            }}
+          >
+
+            <LocalShippingIcon
+              style={{ marginRight: "10px" }}
+            />
+
+            Update Blockchain Shipment
+
+          </Btn>
+
+          {/* VERIFIED MEDICINES */}
           <LinkButton
             to="/received-products"
             className="btns"
             buttonStyle="btn--long"
             buttonSize="btn--large"
-            style={{ fontSize: "1rem" }}
           >
-            <CheckCircleIcon style={{ marginRight: "10px" }} />
-            View Received Medicines
+            <CheckCircleIcon
+              style={{ marginRight: "10px" }}
+            />
+
+            View Verified Medicines
           </LinkButton>
+
         </Box>
+
       </Paper>
+
     </Box>
   );
 };

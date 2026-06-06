@@ -188,7 +188,7 @@ const Guide = () => {
             lineHeight: "1.8rem",
           }}
         >
-          Our platform uses <strong>Federated Learning (FL)</strong> to authenticate medicines...
+              Our platform uses <strong>Blockchain Technology</strong> to securely verify medicine authenticity, ensure transparent supply chain tracking, and protect patients from counterfeit drugs through tamper-proof digital records.
         </Typography>
       </CustomBox>
 

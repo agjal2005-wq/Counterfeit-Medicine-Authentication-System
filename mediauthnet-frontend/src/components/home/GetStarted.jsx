@@ -1,4 +1,85 @@
-import { Button, styled, Typography } from "@mui/material";
+// import { Button, styled, Typography } from "@mui/material";
+// import { Box, Container } from "@mui/system";
+// import React from "react";
+// import featuredMedicineImg from "../../img/Featured medicine.png";
+// import CustomButton from "./CustomButton";
+// import { useNavigate } from "react-router-dom";
+
+// const GetStarted = () => {
+//   const navigate = useNavigate();
+
+//   const CustomContainer = styled(Container)(({ theme }) => ({
+//     backgroundColor: "#17275F",
+//     height: "416px",
+//     borderRadius: "15px",
+//     display: "flex",
+//     justifyContent: "space-around",
+//     alignItems: "center",
+//     [theme.breakpoints.down("md")]: {
+//       height: "auto",
+//       flexDirection: "column",
+//       alignItems: "center",
+//       padding: theme.spacing(3, 3, 0, 3),
+//       width: "90%",
+//     },
+//   }));
+
+//   const CustomBox = styled(Box)(({ theme }) => ({
+//     padding: theme.spacing(10, 0, 10, 0),
+//     margin: theme.spacing(0, 2, 0, 2),
+//     [theme.breakpoints.down("md")]: {
+//       padding: "0",
+//     },
+//   }));
+
+//   return (
+//     <CustomBox id="featured-section">
+//       <CustomContainer>
+//         <Box>
+//           <Typography
+//             sx={{ fontSize: "35px", color: "white", fontWeight: "700" }}
+//           >
+//             Featured Medicines
+//           </Typography>
+
+//           <Typography
+//             sx={{ fontSize: "16px", color: "#ccc", fontWeight: "500", my: 3 }}
+//           >
+//             Explore medicines verified using Federated Learning – a privacy-preserving
+//             AI technique used to detect counterfeit drugs without sharing sensitive data.
+//           </Typography>
+
+//           <CustomButton
+//             backgroundColor="#fff"
+//             color="#17275F"
+//             buttonText="Get Started Now"
+//             getStartedBtn={true}
+//             onClick={() => navigate("/featured-medicines")}
+//           />
+//         </Box>
+
+//         <img
+//           src={featuredMedicineImg}
+//           alt="Featured Medicine"
+//           style={{
+//             width: "380px",
+//             height: "auto",
+//             objectFit: "contain",
+//           }}
+//         />
+
+//       </CustomContainer>
+//     </CustomBox>
+//   );
+// };
+
+// export default GetStarted;
+
+
+
+
+
+import { styled, Typography } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import React from "react";
 import featuredMedicineImg from "../../img/Featured medicine.png";
@@ -6,6 +87,7 @@ import CustomButton from "./CustomButton";
 import { useNavigate } from "react-router-dom";
 
 const GetStarted = () => {
+
   const navigate = useNavigate();
 
   const CustomContainer = styled(Container)(({ theme }) => ({
@@ -15,6 +97,7 @@ const GetStarted = () => {
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
+
     [theme.breakpoints.down("md")]: {
       height: "auto",
       flexDirection: "column",
@@ -27,6 +110,7 @@ const GetStarted = () => {
   const CustomBox = styled(Box)(({ theme }) => ({
     padding: theme.spacing(10, 0, 10, 0),
     margin: theme.spacing(0, 2, 0, 2),
+
     [theme.breakpoints.down("md")]: {
       padding: "0",
     },
@@ -34,19 +118,37 @@ const GetStarted = () => {
 
   return (
     <CustomBox id="featured-section">
+
       <CustomContainer>
+
+        {/* LEFT CONTENT */}
         <Box>
+
           <Typography
-            sx={{ fontSize: "35px", color: "white", fontWeight: "700" }}
+            sx={{
+              fontSize: "35px",
+              color: "white",
+              fontWeight: "700"
+            }}
           >
             Featured Medicines
           </Typography>
 
           <Typography
-            sx={{ fontSize: "16px", color: "#ccc", fontWeight: "500", my: 3 }}
+            sx={{
+              fontSize: "16px",
+              color: "#ccc",
+              fontWeight: "500",
+              my: 3,
+              lineHeight: "1.8rem",
+              maxWidth: "500px"
+            }}
           >
-            Explore medicines verified using Federated Learning – a privacy-preserving
-            AI technique used to detect counterfeit drugs without sharing sensitive data.
+            Explore medicines verified using
+            <strong> Blockchain Technology</strong> —
+            a secure and tamper-proof system used to detect counterfeit
+            drugs, validate QR codes, track medicine supply chains,
+            and ensure trusted pharmaceutical authentication.
           </Typography>
 
           <CustomButton
@@ -56,8 +158,10 @@ const GetStarted = () => {
             getStartedBtn={true}
             onClick={() => navigate("/featured-medicines")}
           />
+
         </Box>
 
+        {/* RIGHT IMAGE */}
         <img
           src={featuredMedicineImg}
           alt="Featured Medicine"
@@ -69,6 +173,7 @@ const GetStarted = () => {
         />
 
       </CustomContainer>
+
     </CustomBox>
   );
 };

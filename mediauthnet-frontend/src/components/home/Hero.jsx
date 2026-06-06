@@ -60,19 +60,19 @@ const Hero = () => {
               variant="body2"
               sx={{ fontSize: "18px", color: "#5A6473", my: 4 }}
             >
-              A federated learning–powered platform ensuring private, secure, 
-              and reliable medicine authentication to protect patients from 
-              counterfeit drugs.
+              A blockchain-powered platform ensuring secure, transparent,
+              and tamper-proof medicine authentication to protect patients
+              from counterfeit drugs and enhance supply chain trust.
             </Typography>
 
-            {/* <Link to="/scanner">
+            <Link to="/scanner">
               <CustomButton
                 backgroundColor="#0F1B4C"
                 color="#fff"
                 buttonText="Scan QR"
                 heroBtn={true}
               />
-            </Link> */}
+            </Link>
           </Box>
 
           <Box sx={{ flex: "1.25" }}>

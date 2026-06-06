@@ -220,40 +220,430 @@
 
 
 
+// import "../../css/Role.css";
+// import { LinkButton } from "../LinkButton";
+// import { Box, Button as Btn, Typography, Paper } from "@mui/material";
+// import LogoutIcon from "@mui/icons-material/Logout";
+// import StoreIcon from "@mui/icons-material/Store";
+// import CameraAltIcon from "@mui/icons-material/CameraAlt";
+// import InventoryIcon from "@mui/icons-material/Inventory";
+// import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
+// const Retailer = () => {
+//   return (
+//     <Box
+//       sx={{
+//         minHeight: "100vh",
+//         background: "linear-gradient(135deg, #e8f0fe 0%, #d4e1ff 100%)",
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         padding: "30px",
+//       }}
+//     >
+//       <Paper
+//         elevation={6}
+//         sx={{
+//           width: "520px",
+//           padding: "40px 35px",
+//           borderRadius: "20px",
+//           backgroundColor: "rgba(255,255,255,0.9)",
+//           backdropFilter: "blur(10px)",
+//           textAlign: "center",
+//           position: "relative",
+//         }}
+//       >
+//         {/* Logout Button */}
+//         <Box
+//           sx={{
+//             position: "absolute",
+//             top: 8,
+//             right: 10,
+//           }}
+//         >
+//           <Btn
+//             href="/login"
+//             variant="contained"
+//             color="error"
+//             endIcon={<LogoutIcon />}
+//             sx={{
+//               fontWeight: 700,
+//               borderRadius: "10px",
+//               padding: "6px 14px",
+//             }}
+//           >
+//             Logout
+//           </Btn>
+//         </Box>
+
+//         {/* Title */}
+//         <Typography
+//           variant="h4"
+//           sx={{
+//             fontWeight: "900",
+//             color: "#0F1B4C",
+//             mb: 1,
+//             fontSize: "2rem",
+//           }}
+//         >
+//           Retailer Dashboard
+//         </Typography>
+
+//         {/* Description */}
+//         <Typography
+//           variant="body1"
+//           sx={{
+//             color: "#4F5361",
+//             mb: 4,
+//             maxWidth: "480px",
+//             margin: "0 auto",
+//             lineHeight: "1.7rem",
+//             fontSize: "1rem",
+//           }}
+//         >
+//           Your responsibility is to verify all incoming medicines from
+//           suppliers. Using our Federated Learning AI model, you can quickly
+//           detect counterfeit medicines via QR scans or image uploads.
+//         </Typography>
+
+//         {/* Buttons Section */}
+//         <Box
+//           sx={{
+//             width: "100%",
+//             maxWidth: "420px",
+//             margin: "0 auto",
+//             display: "flex",
+//             flexDirection: "column",
+//             gap: 2.2,
+//           }}
+//         >
+//           <LinkButton
+//             to="/profile"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <StoreIcon style={{ marginRight: "10px" }} />
+//             View Profile
+//           </LinkButton>
+
+//           <LinkButton
+//             to="/scanner"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <CameraAltIcon style={{ marginRight: "10px" }} />
+//             Verify Medicine (Scan / Upload)
+//           </LinkButton>
+
+//           <LinkButton
+//             to="/incoming-products"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <InventoryIcon style={{ marginRight: "10px" }} />
+//             Incoming Shipments
+//           </LinkButton>
+
+//           <LinkButton
+//             to="/verification-history"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <CheckCircleIcon style={{ marginRight: "10px" }} />
+//             Verification History
+//           </LinkButton>
+//         </Box>
+//       </Paper>
+//     </Box>
+//   );
+// };
+
+// export default Retailer;
+
+
+
+
+
+// import "../../css/Role.css";
+
+// import { LinkButton } from "../LinkButton";
+
+// import {
+//   Box,
+//   Button as Btn,
+//   Typography,
+//   Paper
+// } from "@mui/material";
+
+// import LogoutIcon from "@mui/icons-material/Logout";
+// import StoreIcon from "@mui/icons-material/Store";
+// import CameraAltIcon from "@mui/icons-material/CameraAlt";
+// import InventoryIcon from "@mui/icons-material/Inventory";
+// import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+
+// import bgImage from "../../img/bg.png";
+
+// const Retailer = () => {
+
+//   return (
+//     <Box
+//       sx={{
+//         minHeight: "100vh",
+
+//         backgroundImage: `url(${bgImage})`,
+//         backgroundSize: "cover",
+//         backgroundPosition: "center",
+//         backgroundRepeat: "no-repeat",
+
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+
+//         padding: "30px",
+//       }}
+//     >
+
+//       <Paper
+//         elevation={8}
+//         sx={{
+//           width: "520px",
+
+//           padding: "40px 35px",
+
+//           borderRadius: "20px",
+
+//           backgroundColor: "rgba(255,255,255,0.92)",
+
+//           backdropFilter: "blur(10px)",
+
+//           textAlign: "center",
+
+//           position: "relative",
+//         }}
+//       >
+
+//         {/* =========================
+//             LOGOUT BUTTON
+//         ========================== */}
+//         <Box
+//           sx={{
+//             position: "absolute",
+//             top: 8,
+//             right: 10,
+//           }}
+//         >
+
+//           <Btn
+//             href="/login"
+//             variant="contained"
+//             color="error"
+//             endIcon={<LogoutIcon />}
+//             sx={{
+//               fontWeight: 700,
+//               borderRadius: "10px",
+//               padding: "6px 14px",
+//             }}
+//           >
+//             Logout
+//           </Btn>
+
+//         </Box>
+
+//         {/* =========================
+//             TITLE
+//         ========================== */}
+//         <Typography
+//           variant="h4"
+//           sx={{
+//             fontWeight: "900",
+//             color: "#0F1B4C",
+//             mb: 1,
+//             fontSize: "2rem",
+//           }}
+//         >
+//           Retailer Dashboard
+//         </Typography>
+
+//         {/* =========================
+//             DESCRIPTION
+//         ========================== */}
+//         <Typography
+//           variant="body1"
+//           sx={{
+//             color: "#4F5361",
+//             mb: 4,
+//             maxWidth: "480px",
+//             margin: "0 auto",
+//             lineHeight: "1.8rem",
+//             fontSize: "1rem",
+//           }}
+//         >
+//           Your responsibility is to verify all incoming medicines
+//           from suppliers using
+//           <strong> Blockchain Technology</strong>.
+//           Scan QR codes or verify batch IDs to instantly detect
+//           counterfeit medicines and ensure secure pharmaceutical
+//           supply chain validation.
+//         </Typography>
+
+//         {/* =========================
+//             BUTTONS SECTION
+//         ========================== */}
+//         <Box
+//           sx={{
+//             width: "100%",
+//             maxWidth: "420px",
+//             margin: "0 auto",
+
+//             display: "flex",
+//             flexDirection: "column",
+//             gap: 2.2,
+//           }}
+//         >
+
+//           {/* View Profile */}
+//           <LinkButton
+//             to="/profile"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <StoreIcon
+//               style={{ marginRight: "10px" }}
+//             />
+
+//             View Profile
+//           </LinkButton>
+
+//           {/* Verify Medicine */}
+//           <LinkButton
+//             to="/scanner"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <CameraAltIcon
+//               style={{ marginRight: "10px" }}
+//             />
+
+//             Verify Medicine (QR / Batch)
+//           </LinkButton>
+
+//           {/* Incoming Shipments */}
+//           <LinkButton
+//             to="/incoming-products"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <InventoryIcon
+//               style={{ marginRight: "10px" }}
+//             />
+
+//             Incoming Blockchain Shipments
+//           </LinkButton>
+
+//           {/* Verification History */}
+//           <LinkButton
+//             to="/verification-history"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//           >
+//             <CheckCircleIcon
+//               style={{ marginRight: "10px" }}
+//             />
+
+//             Verification History
+//           </LinkButton>
+
+//         </Box>
+
+//       </Paper>
+
+//     </Box>
+//   );
+// };
+
+// export default Retailer;
+
+
+
+
+
 import "../../css/Role.css";
+
 import { LinkButton } from "../LinkButton";
-import { Box, Button as Btn, Typography, Paper } from "@mui/material";
+
+import {
+  Box,
+  Button as Btn,
+  Typography,
+  Paper
+} from "@mui/material";
+
 import LogoutIcon from "@mui/icons-material/Logout";
 import StoreIcon from "@mui/icons-material/Store";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import InventoryIcon from "@mui/icons-material/Inventory";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
+import bgImage from "../../img/bg.png";
+
 const Retailer = () => {
+
   return (
     <Box
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #e8f0fe 0%, #d4e1ff 100%)",
+
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+
         padding: "30px",
       }}
     >
+
       <Paper
-        elevation={6}
+        elevation={8}
         sx={{
           width: "520px",
+
           padding: "40px 35px",
+
           borderRadius: "20px",
-          backgroundColor: "rgba(255,255,255,0.9)",
+
+          backgroundColor: "rgba(255,255,255,0.92)",
+
           backdropFilter: "blur(10px)",
+
           textAlign: "center",
+
           position: "relative",
         }}
       >
-        {/* Logout Button */}
+
+        {/* =========================
+            LOGOUT BUTTON
+        ========================== */}
         <Box
           sx={{
             position: "absolute",
@@ -261,6 +651,7 @@ const Retailer = () => {
             right: 10,
           }}
         >
+
           <Btn
             href="/login"
             variant="contained"
@@ -274,9 +665,12 @@ const Retailer = () => {
           >
             Logout
           </Btn>
+
         </Box>
 
-        {/* Title */}
+        {/* =========================
+            TITLE
+        ========================== */}
         <Typography
           variant="h4"
           sx={{
@@ -289,7 +683,9 @@ const Retailer = () => {
           Retailer Dashboard
         </Typography>
 
-        {/* Description */}
+        {/* =========================
+            DESCRIPTION
+        ========================== */}
         <Typography
           variant="body1"
           sx={{
@@ -297,26 +693,34 @@ const Retailer = () => {
             mb: 4,
             maxWidth: "480px",
             margin: "0 auto",
-            lineHeight: "1.7rem",
+            lineHeight: "1.8rem",
             fontSize: "1rem",
           }}
         >
-          Your responsibility is to verify all incoming medicines from
-          suppliers. Using our Federated Learning AI model, you can quickly
-          detect counterfeit medicines via QR scans or image uploads.
+          Your responsibility is to verify all incoming medicines
+          from suppliers using
+          <strong> Blockchain Technology</strong>.
+          Scan QR codes or verify batch IDs to instantly detect
+          counterfeit medicines and ensure secure pharmaceutical
+          supply chain validation.
         </Typography>
 
-        {/* Buttons Section */}
+        {/* =========================
+            BUTTONS SECTION
+        ========================== */}
         <Box
           sx={{
             width: "100%",
             maxWidth: "420px",
             margin: "0 auto",
+
             display: "flex",
             flexDirection: "column",
             gap: 2.2,
           }}
         >
+
+          {/* View Profile */}
           <LinkButton
             to="/profile"
             className="btns"
@@ -324,10 +728,14 @@ const Retailer = () => {
             buttonSize="btn--large"
             style={{ fontSize: "1rem" }}
           >
-            <StoreIcon style={{ marginRight: "10px" }} />
+            <StoreIcon
+              style={{ marginRight: "10px" }}
+            />
+
             View Profile
           </LinkButton>
 
+          {/* Verify Medicine */}
           <LinkButton
             to="/scanner"
             className="btns"
@@ -335,33 +743,47 @@ const Retailer = () => {
             buttonSize="btn--large"
             style={{ fontSize: "1rem" }}
           >
-            <CameraAltIcon style={{ marginRight: "10px" }} />
-            Verify Medicine (Scan / Upload)
+            <CameraAltIcon
+              style={{ marginRight: "10px" }}
+            />
+
+            Verify Medicine (QR / Batch)
           </LinkButton>
 
+          {/* Incoming Blockchain Shipments */}
           <LinkButton
-            to="/incoming-products"
+            to="/received-products"
             className="btns"
             buttonStyle="btn--long"
             buttonSize="btn--large"
             style={{ fontSize: "1rem" }}
           >
-            <InventoryIcon style={{ marginRight: "10px" }} />
-            Incoming Shipments
+            <InventoryIcon
+              style={{ marginRight: "10px" }}
+            />
+
+            Incoming Blockchain Shipments
           </LinkButton>
 
+          {/* Verification History */}
           <LinkButton
-            to="/verification-history"
+            to="/received-products"
             className="btns"
             buttonStyle="btn--long"
             buttonSize="btn--large"
             style={{ fontSize: "1rem" }}
           >
-            <CheckCircleIcon style={{ marginRight: "10px" }} />
+            <CheckCircleIcon
+              style={{ marginRight: "10px" }}
+            />
+
             Verification History
           </LinkButton>
+
         </Box>
+
       </Paper>
+
     </Box>
   );
 };

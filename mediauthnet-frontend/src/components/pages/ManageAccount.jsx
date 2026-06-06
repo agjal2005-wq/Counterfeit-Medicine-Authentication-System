@@ -109,22 +109,181 @@
 
 
 
-import { Box, Paper, Typography } from '@mui/material';
-import bgImg from '../../img/bg.png';
-import axios from 'axios';
-import { DataGrid } from '@mui/x-data-grid';
-import { Button } from '@mui/material';
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { Box, Paper, Typography } from '@mui/material';
+// import bgImg from '../../img/bg.png';
+// import axios from 'axios';
+// import { DataGrid } from '@mui/x-data-grid';
+// import { Button } from '@mui/material';
+// import { useState, useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
-const columns = [
-  { field: 'name', headerName: 'Name', width: 150 },
-  { field: 'description', headerName: 'Description', width: 250 },
-  { field: 'username', headerName: 'Username', width: 150 },
-  { field: 'website', headerName: 'Website', width: 180 },
-  { field: 'location', headerName: 'Location', width: 200 },
-  { field: 'role', headerName: 'Role', width: 140 },
-];
+// const columns = [
+//   {
+//     field: "name",
+//     headerName: "Name",
+//     width: 220,
+//   },
+//   {
+//     field: "email",
+//     headerName: "Email",
+//     width: 260,
+//   },
+//   {
+//     field: "role",
+//     headerName: "Role",
+//     width: 180,
+//   },
+//   {
+//     field: "isVerified",
+//     headerName: "Verified",
+//     width: 140,
+//   },
+//   {
+//     field: "edit",
+//     headerName: "Change Role",
+//     width: 220,
+//     renderCell: (params) => (
+//       <select
+//         value={params.row.role}
+//         onChange={(e) =>
+//           updateRole(
+//             params.row.id,
+//             e.target.value
+//           )
+//         }
+//       >
+//         <option value="user">User</option>
+//         <option value="manufacturer">Manufacturer</option>
+//         <option value="supplier">Supplier</option>
+//         <option value="retailer">Retailer</option>
+//         <option value="admin">Admin</option>
+//       </select>
+//     ),
+//   },
+// ];
+
+// const ManageAccount = () => {
+//   const [rows, setRows] = useState([]);
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     handleData();
+//   }, []);
+
+// const handleData = async () => {
+//   try {
+
+//     const res = await axios.get(
+//       "http://localhost:5000/api/auth/users"
+//     );
+
+//     const fixedRows = res.data.map(
+//       (row) => ({
+//         id: row._id,
+//         ...row
+//       })
+//     );
+
+//     setRows(fixedRows);
+
+//   } catch (err) {
+
+//     console.error(
+//       "Error loading users:",
+//       err
+//     );
+//   }
+// };
+
+// const updateRole = async (
+//   userId,
+//   newRole
+// ) => {
+
+//   try {
+
+//     await axios.put(
+//       `http://localhost:5000/api/auth/users/${userId}`,
+//       {
+//         role: newRole
+//       }
+//     );
+
+//     handleData();
+
+//   } catch (error) {
+
+//     console.error(
+//       "Role update error:",
+//       error
+//     );
+//   }
+// };
+
+// const handleBack = () => navigate(-1);
+//   return (
+//     <Box
+//       sx={{
+//         backgroundImage: `url(${bgImg})`,
+//         minHeight: "100vh",
+//         backgroundSize: 'cover',
+//         backgroundRepeat: "no-repeat",
+//         paddingTop: "50px",
+//       }}
+//     >
+//       <Paper
+//         elevation={4}
+//         sx={{
+//           width: "85%",
+//           margin: "auto",
+//           padding: "25px",
+//           borderRadius: "20px",
+//           backgroundColor: "rgba(255,255,255,0.8)",
+//         }}
+//       >
+//         <Typography
+//           variant="h3"
+//           sx={{
+//             textAlign: "center",
+//             marginBottom: "25px",
+//             fontWeight: "800",
+//             color: "#0F1B4C"
+//           }}
+//         >
+//           Manage Accounts
+//         </Typography>
+
+//         <Paper sx={{ height: 400, width: '100%', borderRadius: "10px" }}>
+//           <DataGrid
+//             rows={rows}
+//             columns={columns}
+//             pageSize={5}
+//             rowsPerPageOptions={[5]}
+//             sx={{ backgroundColor: "white", borderRadius: "10px" }}
+//           />
+//         </Paper>
+
+//         <Box sx={{ textAlign: "center", marginTop: "20px" }}>
+//           <Button variant="contained" onClick={handleBack}>
+//             Back
+//           </Button>
+//         </Box>
+//       </Paper>
+//     </Box>
+//   );
+// };
+
+// export default ManageAccount;
+
+
+
+
+import { Box, Paper, Typography, Button } from "@mui/material";
+import bgImg from "../../img/bg.png";
+import axios from "axios";
+import { DataGrid } from "@mui/x-data-grid";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ManageAccount = () => {
   const [rows, setRows] = useState([]);
@@ -136,25 +295,123 @@ const ManageAccount = () => {
 
   const handleData = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/profileAll');
-      const fixedRows = res.data.map((row, index) => ({
-        id: index + 1,
-        ...row
+      const res = await axios.get(
+        "http://localhost:5000/api/auth/users"
+      );
+
+      const fixedRows = res.data.map((row) => ({
+        id: row._id,
+        ...row,
       }));
+
       setRows(fixedRows);
+
     } catch (err) {
-      console.error("Error loading users:", err);
+      console.error(
+        "Error loading users:",
+        err
+      );
     }
   };
 
-  const handleBack = () => navigate(-1);
+  const updateRole = async (
+    userId,
+    newRole
+  ) => {
+
+    try {
+
+      await axios.put(
+        `http://localhost:5000/api/auth/users/${userId}`,
+        {
+          role: newRole,
+        }
+      );
+
+      handleData();
+
+    } catch (error) {
+
+      console.error(
+        "Role update error:",
+        error
+      );
+    }
+  };
+
+  const columns = [
+    {
+      field: "name",
+      headerName: "Name",
+      width: 220,
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      width: 260,
+    },
+    {
+      field: "role",
+      headerName: "Role",
+      width: 180,
+    },
+    {
+      field: "isVerified",
+      headerName: "Verified",
+      width: 140,
+    },
+    {
+      field: "edit",
+      headerName: "Change Role",
+      width: 220,
+
+      renderCell: (params) => (
+        <select
+          value={params.row.role}
+          onChange={(e) =>
+            updateRole(
+              params.row.id,
+              e.target.value
+            )
+          }
+          style={{
+            padding: "5px",
+            borderRadius: "5px",
+          }}
+        >
+          <option value="user">
+            User
+          </option>
+
+          <option value="manufacturer">
+            Manufacturer
+          </option>
+
+          <option value="supplier">
+            Supplier
+          </option>
+
+          <option value="retailer">
+            Retailer
+          </option>
+
+          <option value="admin">
+            Admin
+          </option>
+        </select>
+      ),
+    },
+  ];
+
+  const handleBack = () =>
+    navigate(-1);
 
   return (
     <Box
       sx={{
         backgroundImage: `url(${bgImg})`,
         minHeight: "100vh",
-        backgroundSize: 'cover',
+        backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         paddingTop: "50px",
       }}
@@ -166,7 +423,8 @@ const ManageAccount = () => {
           margin: "auto",
           padding: "25px",
           borderRadius: "20px",
-          backgroundColor: "rgba(255,255,255,0.8)",
+          backgroundColor:
+            "rgba(255,255,255,0.8)",
         }}
       >
         <Typography
@@ -175,24 +433,41 @@ const ManageAccount = () => {
             textAlign: "center",
             marginBottom: "25px",
             fontWeight: "800",
-            color: "#0F1B4C"
+            color: "#0F1B4C",
           }}
         >
           Manage Accounts
         </Typography>
 
-        <Paper sx={{ height: 400, width: '100%', borderRadius: "10px" }}>
+        <Paper
+          sx={{
+            height: 450,
+            width: "100%",
+            borderRadius: "10px",
+          }}
+        >
           <DataGrid
             rows={rows}
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
-            sx={{ backgroundColor: "white", borderRadius: "10px" }}
+            sx={{
+              backgroundColor: "white",
+              borderRadius: "10px",
+            }}
           />
         </Paper>
 
-        <Box sx={{ textAlign: "center", marginTop: "20px" }}>
-          <Button variant="contained" onClick={handleBack}>
+        <Box
+          sx={{
+            textAlign: "center",
+            marginTop: "20px",
+          }}
+        >
+          <Button
+            variant="contained"
+            onClick={handleBack}
+          >
             Back
           </Button>
         </Box>

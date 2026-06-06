@@ -209,44 +209,135 @@ export const createProduct = async (req, res) => {
 // =====================================
 // VERIFY QR TOKEN (PUBLIC)
 // =====================================
+// export const verifyQR = async (req, res) => {
+//   try {
+//     const { qrToken } = req.params;
+
+//     const product = await Product.findOne({ qrToken }).populate(
+//       "manufacturer",
+//       "name email role"
+//     );
+
+//     if (!product) {
+//       return res.status(404).json({
+//         verified: false,
+//         message: "Invalid or counterfeit product",
+//       });
+//     }
+
+//     if (product.status !== "active") {
+//       return res.json({
+//         verified: false,
+//         message: "Product has been revoked / inactive",
+//         product,
+//       });
+//     }
+
+//     return res.json({
+//       verified: true,
+//       message: "Product QR token is valid",
+//       product,
+//     });
+//   } catch (error) {
+//     console.error("QR Verification Error:", error);
+//     res.status(500).json({ message: "QR verification failed" });
+//   }
+// };
+
+
+
 export const verifyQR = async (req, res) => {
+
   try {
+
     const { qrToken } = req.params;
 
-    const product = await Product.findOne({ qrToken }).populate(
+
+
+    const userId =
+      req.query.userId || "Anonymous";
+
+    const location =
+      req.query.location || "Unknown";
+
+    const latitude =
+      req.query.latitude || null;
+
+    const longitude =
+      req.query.longitude || null;
+
+    console.log("USER:", userId);
+    console.log("LOCATION:", location);
+
+    const product = await Product.findOne({
+      qrToken
+    }).populate(
       "manufacturer",
       "name email role"
     );
 
     if (!product) {
+
       return res.status(404).json({
         verified: false,
-        message: "Invalid or counterfeit product",
+        message:
+          "Invalid or counterfeit product",
       });
     }
 
     if (product.status !== "active") {
+
       return res.json({
         verified: false,
-        message: "Product has been revoked / inactive",
+        message:
+          "Product has been revoked / inactive",
         product,
       });
     }
 
-    return res.json({
-      verified: true,
-      message: "Product QR token is valid",
-      product,
+    // ==========================
+    // SAVE USER SCAN HISTORY
+    // ==========================
+    product.scanHistory.push({
+
+      userId,
+
+      location,
+
+      latitude,
+
+      longitude,
+
+      timestamp: new Date(),
+
     });
+
+    await product.save();
+
+    return res.json({
+
+      verified: true,
+
+      message:
+        "Product QR token is valid",
+
+      product,
+
+    });
+
   } catch (error) {
-    console.error("QR Verification Error:", error);
-    res.status(500).json({ message: "QR verification failed" });
+
+    console.error(
+      "QR Verification Error:",
+      error
+    );
+
+    res.status(500).json({
+      message:
+        "QR verification failed",
+    });
   }
 };
-
-
-
-
 
 // =====================================
 // GET PRODUCT BY SERIAL NUMBER

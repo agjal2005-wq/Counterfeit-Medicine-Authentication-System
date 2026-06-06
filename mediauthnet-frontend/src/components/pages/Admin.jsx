@@ -150,40 +150,223 @@
 
 
 
+// import '../../css/Role.css';
+// import { LinkButton } from '../LinkButton';
+// import { Box, Button as Btn, Typography, Paper } from '@mui/material';
+// import LogoutIcon from '@mui/icons-material/Logout';
+// import SecurityIcon from '@mui/icons-material/Security';
+// import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+// import AssessmentIcon from '@mui/icons-material/Assessment';
+// import ReportIcon from '@mui/icons-material/Report';
+
+// const Admin = () => {
+//   return (
+//     <Box
+//       sx={{
+//         minHeight: "100vh",
+//         background: "linear-gradient(135deg, #e8f0fe 0%, #d4e1ff 100%)",
+//         display: "flex",
+//         justifyContent: "center",
+//         alignItems: "center",
+//         padding: "30px",
+//       }}
+//     >
+//       <Paper
+//         elevation={6}
+//         sx={{
+//           width: "520px",
+//           padding: "40px 35px",
+//           borderRadius: "20px",
+//           backgroundColor: "rgba(255,255,255,0.9)",
+//           backdropFilter: "blur(10px)",
+//           textAlign: "center",
+//           position: "relative",
+//         }}
+//       >
+//         {/* Logout Button */}
+//         <Box
+//           sx={{
+//             position: "absolute",
+//             top: 8,
+//             right: 10,
+//           }}
+//         >
+//           <Btn
+//             href="/login"
+//             variant="contained"
+//             color="error"
+//             endIcon={<LogoutIcon />}
+//             sx={{
+//               fontWeight: 700,
+//               borderRadius: "10px",
+//               padding: "6px 14px",
+//             }}
+//           >
+//             Logout
+//           </Btn>
+//         </Box>
+
+//         {/* Header */}
+//         <Typography
+//           variant="h4"
+//           sx={{
+//             fontWeight: "900",
+//             color: "#0F1B4C",
+//             mb: 1,
+//             fontSize: "2rem",
+//           }}
+//         >
+//           Admin Dashboard
+//         </Typography>
+
+//         {/* Description */}
+//         <Typography
+//           variant="body1"
+//           sx={{
+//             maxWidth: "480px",
+//             color: "#4F5361",
+//             margin: "0 auto",
+//             lineHeight: "1.7rem",
+//             mb: 4,
+//           }}
+//         >
+//           You control the entire Federated Learning–based Medicine Authentication
+//           Platform. Manage user roles, monitor global FL training, review counterfeit 
+//           reports, and maintain system integrity.
+//         </Typography>
+
+//         {/* Action Buttons */}
+//         <Box
+//           sx={{
+//             width: "100%",
+//             maxWidth: "420px",
+//             margin: "0 auto",
+//             display: "flex",
+//             flexDirection: "column",
+//             gap: 2.2,
+//           }}
+//         >
+//           {/* Manage Accounts */}
+//           <LinkButton
+//             to="/manage-account"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//             className="btns"
+//           >
+//             <ManageAccountsIcon style={{ marginRight: "10px" }} />
+//             Manage Users & Roles
+//           </LinkButton>
+
+//           {/* Add Account */}
+//           <LinkButton
+//             to="/add-account"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//             className="btns"
+//           >
+//             <SecurityIcon style={{ marginRight: "10px" }} />
+//             Add New Account
+//           </LinkButton>
+
+//           {/* FL Monitoring */}
+//           <LinkButton
+//             to="/fl-monitoring"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//             className="btns"
+//           >
+//             <AssessmentIcon style={{ marginRight: "10px" }} />
+//             View FL Training Status
+//           </LinkButton>
+
+//           {/* Counterfeit Alerts */}
+//           <LinkButton
+//             to="/counterfeit-reports"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ fontSize: "1rem" }}
+//             className="btns"
+//           >
+//             <ReportIcon style={{ marginRight: "10px" }} />
+//             Counterfeit Alerts
+//           </LinkButton>
+//         </Box>
+//       </Paper>
+//     </Box>
+//   );
+// };
+
+// export default Admin;
+
+
+
+
+
 import '../../css/Role.css';
+
 import { LinkButton } from '../LinkButton';
-import { Box, Button as Btn, Typography, Paper } from '@mui/material';
+
+import {
+  Box,
+  Button as Btn,
+  Typography,
+  Paper
+} from '@mui/material';
+
 import LogoutIcon from '@mui/icons-material/Logout';
 import SecurityIcon from '@mui/icons-material/Security';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import ReportIcon from '@mui/icons-material/Report';
 
+import bgImage from "../../img/bg.png";
+
 const Admin = () => {
+
   return (
     <Box
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg, #e8f0fe 0%, #d4e1ff 100%)",
+
+        /* BACKGROUND IMAGE */
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+
         padding: "30px",
       }}
     >
+
       <Paper
-        elevation={6}
+        elevation={8}
         sx={{
           width: "520px",
+
           padding: "40px 35px",
+
           borderRadius: "20px",
-          backgroundColor: "rgba(255,255,255,0.9)",
+
+          backgroundColor: "rgba(255,255,255,0.92)",
+
           backdropFilter: "blur(10px)",
+
           textAlign: "center",
+
           position: "relative",
         }}
       >
-        {/* Logout Button */}
+
+        {/* =========================
+            LOGOUT BUTTON
+        ========================== */}
         <Box
           sx={{
             position: "absolute",
@@ -191,6 +374,7 @@ const Admin = () => {
             right: 10,
           }}
         >
+
           <Btn
             href="/login"
             variant="contained"
@@ -204,9 +388,12 @@ const Admin = () => {
           >
             Logout
           </Btn>
+
         </Box>
 
-        {/* Header */}
+        {/* =========================
+            HEADER
+        ========================== */}
         <Typography
           variant="h4"
           sx={{
@@ -219,7 +406,9 @@ const Admin = () => {
           Admin Dashboard
         </Typography>
 
-        {/* Description */}
+        {/* =========================
+            DESCRIPTION
+        ========================== */}
         <Typography
           variant="body1"
           sx={{
@@ -230,23 +419,30 @@ const Admin = () => {
             mb: 4,
           }}
         >
-          You control the entire Federated Learning–based Medicine Authentication
-          Platform. Manage user roles, monitor global FL training, review counterfeit 
-          reports, and maintain system integrity.
+          You control the entire
+          <strong> Blockchain-Based Medicine Authentication Platform</strong>.
+          Manage user roles, monitor medicine verification records,
+          track blockchain transactions, review counterfeit alerts,
+          and maintain secure pharmaceutical supply chain integrity.
         </Typography>
 
-        {/* Action Buttons */}
+        {/* =========================
+            ACTION BUTTONS
+        ========================== */}
         <Box
           sx={{
             width: "100%",
             maxWidth: "420px",
             margin: "0 auto",
+
             display: "flex",
             flexDirection: "column",
+
             gap: 2.2,
           }}
         >
-          {/* Manage Accounts */}
+
+          {/* Manage Users */}
           <LinkButton
             to="/manage-account"
             buttonStyle="btn--long"
@@ -254,7 +450,10 @@ const Admin = () => {
             style={{ fontSize: "1rem" }}
             className="btns"
           >
-            <ManageAccountsIcon style={{ marginRight: "10px" }} />
+            <ManageAccountsIcon
+              style={{ marginRight: "10px" }}
+            />
+
             Manage Users & Roles
           </LinkButton>
 
@@ -266,20 +465,26 @@ const Admin = () => {
             style={{ fontSize: "1rem" }}
             className="btns"
           >
-            <SecurityIcon style={{ marginRight: "10px" }} />
+            <SecurityIcon
+              style={{ marginRight: "10px" }}
+            />
+
             Add New Account
           </LinkButton>
 
-          {/* FL Monitoring */}
+          {/* Blockchain Monitoring */}
           <LinkButton
-            to="/fl-monitoring"
+            to="/blockchain-transactions"
             buttonStyle="btn--long"
             buttonSize="btn--large"
             style={{ fontSize: "1rem" }}
             className="btns"
           >
-            <AssessmentIcon style={{ marginRight: "10px" }} />
-            View FL Training Status
+            <AssessmentIcon
+              style={{ marginRight: "10px" }}
+            />
+
+            View Blockchain Transactions
           </LinkButton>
 
           {/* Counterfeit Alerts */}
@@ -290,11 +495,17 @@ const Admin = () => {
             style={{ fontSize: "1rem" }}
             className="btns"
           >
-            <ReportIcon style={{ marginRight: "10px" }} />
+            <ReportIcon
+              style={{ marginRight: "10px" }}
+            />
+
             Counterfeit Alerts
           </LinkButton>
+
         </Box>
+
       </Paper>
+
     </Box>
   );
 };

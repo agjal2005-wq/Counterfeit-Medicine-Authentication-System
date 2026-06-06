@@ -1,6 +1,139 @@
+// import "../../css/Role.css";
+// import { LinkButton } from "../LinkButton";
+// import { Box, Button as Btn, Typography } from "@mui/material";
+// import LogoutIcon from "@mui/icons-material/Logout";
+// import CameraAltIcon from "@mui/icons-material/CameraAlt";
+// import HistoryIcon from "@mui/icons-material/History";
+// import ReportProblemIcon from "@mui/icons-material/ReportProblem";
+// import PersonIcon from "@mui/icons-material/Person";
+
+// const User = () => {
+//   return (
+//     <div className="role-container">
+//       <div
+//         className="role-container-box"
+//         style={{
+//           maxWidth: "520px",
+//           padding: "35px 30px",
+//           background: "rgba(255,255,255,0.90)",
+//           borderRadius: "15px",
+//           boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+//           textAlign: "center",
+//           position: "relative",
+//         }}
+//       >
+//         {/* Small Logout Button */}
+//         <Btn
+//           href="/login"
+//           variant="contained"
+//           color="error"
+//           endIcon={<LogoutIcon />}
+//           sx={{
+//             position: "absolute",
+//             top: 4,
+//             right: 10,
+//             padding: "4px 10px",
+//             fontSize: "11px",
+//             fontWeight: 600,
+//             minWidth: "auto",
+//           }}
+//         >
+//           Logout
+//         </Btn>
+
+//         {/* Dashboard Title */}
+//         <Typography
+//           variant="h4"
+//           sx={{
+//             color: "#0F1B4C",
+//             fontWeight: "800",
+//             mb: 1,
+//             fontSize: "32px",
+//           }}
+//         >
+//           User Dashboard
+//         </Typography>
+
+//         {/* Description */}
+//         <Typography
+//           sx={{
+//             fontSize: "15px",
+//             color: "#4F5361",
+//             mb: 4,
+//             lineHeight: "1.7",
+//           }}
+//         >
+//           Verify medicines instantly using our Federated Learning global model.
+//           Scan QR codes or upload images to check if the medicine is{" "}
+//           <b>Genuine</b> or <b>Fake</b>.
+//         </Typography>
+
+//         {/* Buttons Container */}
+//         <Box sx={{ width: "100%", mt: 2 }}>
+
+//           <LinkButton
+//             to="/profile"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ marginBottom: "12px" }}
+//           >
+//             <PersonIcon style={{ marginRight: "8px" }} />
+//             View Profile
+//           </LinkButton>
+
+//           <LinkButton
+//             to="/scanner"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ marginBottom: "12px" }}
+//           >
+//             <CameraAltIcon style={{ marginRight: "8px" }} />
+//             Scan Medicine (Verify)
+//           </LinkButton>
+
+//           <LinkButton
+//             to="/verification-history"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//             style={{ marginBottom: "12px" }}
+//           >
+//             <HistoryIcon style={{ marginRight: "8px" }} />
+//             Verification History
+//           </LinkButton>
+
+//           <LinkButton
+//             to="/report-counterfeit"
+//             className="btns"
+//             buttonStyle="btn--long"
+//             buttonSize="btn--large"
+//           >
+//             <ReportProblemIcon style={{ marginRight: "8px" }} />
+//             Report Counterfeit Medicine
+//           </LinkButton>
+//         </Box>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default User;
+
+
+
+
 import "../../css/Role.css";
+
 import { LinkButton } from "../LinkButton";
-import { Box, Button as Btn, Typography } from "@mui/material";
+
+import {
+  Box,
+  Button as Btn,
+  Typography
+} from "@mui/material";
+
 import LogoutIcon from "@mui/icons-material/Logout";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import HistoryIcon from "@mui/icons-material/History";
@@ -8,8 +141,10 @@ import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import PersonIcon from "@mui/icons-material/Person";
 
 const User = () => {
+
   return (
     <div className="role-container">
+
       <div
         className="role-container-box"
         style={{
@@ -22,7 +157,10 @@ const User = () => {
           position: "relative",
         }}
       >
-        {/* Small Logout Button */}
+
+        {/* =========================
+            LOGOUT BUTTON
+        ========================== */}
         <Btn
           href="/login"
           variant="contained"
@@ -41,7 +179,9 @@ const User = () => {
           Logout
         </Btn>
 
-        {/* Dashboard Title */}
+        {/* =========================
+            DASHBOARD TITLE
+        ========================== */}
         <Typography
           variant="h4"
           sx={{
@@ -54,7 +194,9 @@ const User = () => {
           User Dashboard
         </Typography>
 
-        {/* Description */}
+        {/* =========================
+            DESCRIPTION
+        ========================== */}
         <Typography
           sx={{
             fontSize: "15px",
@@ -63,14 +205,20 @@ const User = () => {
             lineHeight: "1.7",
           }}
         >
-          Verify medicines instantly using our Federated Learning global model.
-          Scan QR codes or upload images to check if the medicine is{" "}
-          <b>Genuine</b> or <b>Fake</b>.
+          Verify medicines instantly using
+          <strong> Blockchain Technology</strong>.
+          Scan QR codes or enter batch IDs to check
+          whether the medicine is
+          <b> Genuine</b> or <b>Counterfeit</b>
+          through secure blockchain verification.
         </Typography>
 
-        {/* Buttons Container */}
+        {/* =========================
+            BUTTONS CONTAINER
+        ========================== */}
         <Box sx={{ width: "100%", mt: 2 }}>
 
+          {/* View Profile */}
           <LinkButton
             to="/profile"
             className="btns"
@@ -78,10 +226,14 @@ const User = () => {
             buttonSize="btn--large"
             style={{ marginBottom: "12px" }}
           >
-            <PersonIcon style={{ marginRight: "8px" }} />
+            <PersonIcon
+              style={{ marginRight: "8px" }}
+            />
+
             View Profile
           </LinkButton>
 
+          {/* Scan Medicine */}
           <LinkButton
             to="/scanner"
             className="btns"
@@ -89,10 +241,14 @@ const User = () => {
             buttonSize="btn--large"
             style={{ marginBottom: "12px" }}
           >
-            <CameraAltIcon style={{ marginRight: "8px" }} />
+            <CameraAltIcon
+              style={{ marginRight: "8px" }}
+            />
+
             Scan Medicine (Verify)
           </LinkButton>
 
+          {/* Verification History */}
           <LinkButton
             to="/verification-history"
             className="btns"
@@ -100,21 +256,31 @@ const User = () => {
             buttonSize="btn--large"
             style={{ marginBottom: "12px" }}
           >
-            <HistoryIcon style={{ marginRight: "8px" }} />
-            Verification History
+            <HistoryIcon
+              style={{ marginRight: "8px" }}
+            />
+
+            Blockchain Verification History
           </LinkButton>
 
+          {/* Report Counterfeit */}
           <LinkButton
             to="/report-counterfeit"
             className="btns"
             buttonStyle="btn--long"
             buttonSize="btn--large"
           >
-            <ReportProblemIcon style={{ marginRight: "8px" }} />
+            <ReportProblemIcon
+              style={{ marginRight: "8px" }}
+            />
+
             Report Counterfeit Medicine
           </LinkButton>
+
         </Box>
+
       </div>
+
     </div>
   );
 };

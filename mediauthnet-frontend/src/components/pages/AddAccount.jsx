@@ -22,7 +22,7 @@
 //         file: [],
 //         filepreview: null
 //     });
-    
+
 //     const errRef = useRef();
 //     const navigate = useNavigate()
 
@@ -94,18 +94,18 @@
 //                 {
 //                     headers: {'Content-Type': 'application/json'}, 
 //                 });
-            
+
 //             console.log(JSON.stringify(res.data));
 
 //             const res2 = await axios.post('http://localhost:5000/addprofile', profileData,
 //                 {
 //                     headers: {'Content-Type': 'application/json'},
 //                 });
-            
+
 //             console.log(JSON.stringify(res2.data));
 
 //             uploadImage(image);
-            
+
 //             setUser('');
 //             setPwd('');
 //             setPwd2('');
@@ -161,7 +161,7 @@
 //                     }}
 //                 >
 //                     Add Account</Typography>
-                    
+
 //                 <form onSubmit={handleSubmit}>
 //                     <TextField
 //                         fullWidth
@@ -403,30 +403,37 @@ const AddAccount = () => {
 
     try {
       const accountData = {
-        username: user,
+        name: name,
+        email: user,
         password: pwd,
         role: role,
       };
 
-      const profileData = {
-        username: user,
-        name,
-        description,
-        website,
-        location,
-        image: image.file ? image.file.name : "",
-        role,
-      };
+      // const profileData = {
+      //   username: user,
+      //   name,
+      //   description,
+      //   website,
+      //   location,
+      //   image: image.file ? image.file.name : "",
+      //   role,
+      // };
 
-      await axios.post("http://localhost:5000/addaccount", accountData, {
-        headers: { "Content-Type": "application/json" },
-      });
+      await axios.post(
+        "http://localhost:5000/api/auth/register",
+        accountData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
-      await axios.post("http://localhost:5000/addprofile", profileData, {
-        headers: { "Content-Type": "application/json" },
-      });
+      // await axios.post("http://localhost:5000/addprofile", profileData, {
+      //   headers: { "Content-Type": "application/json" },
+      // });
 
-      await uploadImage();
+      // await uploadImage();
 
       // reset form
       setUser("");
@@ -444,7 +451,12 @@ const AddAccount = () => {
       } else if (err.response?.status === 400) {
         setErrMsg("Invalid account details.");
       } else {
-        setErrMsg("Failed to create account.");
+        console.log(err.response?.data);
+        setErrMsg(
+          err.response?.data?.message ||
+          JSON.stringify(err.response?.data) ||
+          "Failed to create account."
+        );
       }
       errRef.current.focus();
     }
@@ -496,7 +508,8 @@ const AddAccount = () => {
         <form onSubmit={handleSubmit}>
           <TextField
             fullWidth
-            label="Username"
+            label="Email"
+            type="email"
             margin="dense"
             value={user}
             onChange={(e) => setUser(e.target.value)}

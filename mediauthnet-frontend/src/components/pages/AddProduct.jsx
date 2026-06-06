@@ -1048,6 +1048,441 @@
 
 
 
+// import {
+//   Box,
+//   Paper,
+//   Typography,
+//   TextField,
+//   Button,
+//   Divider,
+// } from "@mui/material";
+// import bgImg from "../../img/bg.png";
+// import QRCode from "qrcode.react";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import useAuth from "../../hooks/useAuth";
+// import api from "../../api/axios";
+
+// const AddProduct = () => {
+//   const [name, setName] = useState("");
+//   const [serialNumber, setSerialNumber] = useState("");
+//   const [batchNumber, setBatchNumber] = useState("");
+//   const [manufactureDate, setManufactureDate] = useState("");
+//   const [expiryDate, setExpiryDate] = useState("");
+//   const [metadata, setMetadata] = useState("");
+//   const [image, setImage] = useState(null);
+
+//   const [qrToken, setQrToken] = useState("");
+//   const [loading, setLoading] = useState("");
+//   const [isUnique, setIsUnique] = useState(true);
+
+//   const navigate = useNavigate();
+
+//   const checkUnique = async () => {
+//     try {
+//       const res = await api.get(`/products/serial/${serialNumber}`);
+
+//       if (res.data.exists) {
+//         setIsUnique(false);
+//         return false;
+//       }
+
+//       setIsUnique(true);
+//       return true;
+//     } catch (err) {
+//       console.error("Serial check error:", err);
+//       return false;
+//     }
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     const unique = await checkUnique();
+//     if (!unique) return;
+
+//     const formData = new FormData();
+//     formData.append("name", name);
+//     formData.append("serialNumber", serialNumber);
+//     formData.append("batchNumber", batchNumber);
+//     formData.append("manufactureDate", manufactureDate);
+//     formData.append("expiryDate", expiryDate);
+//     formData.append("metadata", metadata);
+//     formData.append("image", image);
+
+//     try {
+//       setLoading("Saving product...");
+
+//       const res = await api.post("/products", formData, {
+//         headers: { "Content-Type": "multipart/form-data" },
+//       });
+
+//       setQrToken(res.data.qrToken);
+//       setLoading("Product added successfully!");
+
+//     } catch (err) {
+//       console.error(err);
+//       setLoading("Error saving product");
+//     }
+//   };
+
+//   return (
+//     <Box
+//       sx={{
+//         backgroundImage: `url(${bgImg})`,
+//         minHeight: "100vh",
+//         display: "flex",
+//         justifyContent: "center",
+//         padding: "40px",
+//       }}
+//     >
+//       <Paper
+//         elevation={6}
+//         sx={{ width: "450px", padding: "30px", borderRadius: "15px" }}
+//       >
+//         <Typography variant="h4" textAlign="center" mb={2}>
+//           Add Product
+//         </Typography>
+
+//         <Divider sx={{ mb: 3 }} />
+
+//         <form onSubmit={handleSubmit}>
+//           <TextField fullWidth label="Name" margin="normal" value={name}
+//             onChange={(e) => setName(e.target.value)} />
+
+//           <TextField fullWidth label="Serial Number" margin="normal"
+//             value={serialNumber} onChange={(e) => setSerialNumber(e.target.value)}
+//             error={!isUnique} helperText={!isUnique ? "Already exists!" : ""} />
+
+//           <TextField fullWidth label="Batch Number" margin="normal"
+//             value={batchNumber} onChange={(e) => setBatchNumber(e.target.value)} />
+
+//           <TextField fullWidth type="date" label="Manufacturing Date"
+//             margin="normal" InputLabelProps={{ shrink: true }}
+//             value={manufactureDate} onChange={(e) => setManufactureDate(e.target.value)} />
+
+//           <TextField fullWidth type="date" label="Expiry Date"
+//             margin="normal" InputLabelProps={{ shrink: true }}
+//             value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)} />
+
+//           <TextField fullWidth multiline minRows={2}
+//             label="Metadata (optional)" margin="normal"
+//             value={metadata} onChange={(e) => setMetadata(e.target.value)} />
+
+//           {/* Upload image */}
+//           <Button variant="outlined" component="label" fullWidth sx={{ mt: 2 }}>
+//             Upload Image
+//             <input type="file" hidden onChange={(e) => setImage(e.target.files[0])} />
+//           </Button>
+
+//           {image && (
+//             <img src={URL.createObjectURL(image)} alt="preview"
+//               style={{ width: "100%", marginTop: "15px", borderRadius: "10px" }} />
+//           )}
+
+//           {/* QR After save */}
+//           {qrToken && (
+//             <Box sx={{ textAlign: "center", mt: 3 }}>
+//               <QRCode value={qrToken} size={150} />
+//               <Typography sx={{ mt: 1 }}>QR Token: {qrToken}</Typography>
+//             </Box>
+//           )}
+
+//           {loading && <Typography textAlign="center">{loading}</Typography>}
+
+//           <Button type="submit" variant="contained" fullWidth sx={{ mt: 3 }}>
+//             Submit
+//           </Button>
+
+//           <Button fullWidth sx={{ mt: 1 }} onClick={() => navigate(-1)}>
+//             Back
+//           </Button>
+//         </form>
+//       </Paper>
+//     </Box>
+//   );
+// };
+
+// export default AddProduct;
+
+
+
+
+
+// import {
+//   Box,
+//   Paper,
+//   Typography,
+//   TextField,
+//   Button,
+//   Divider,
+// } from "@mui/material";
+
+// import bgImg from "../../img/bg.png";
+// import QRCode from "qrcode.react";
+// import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import api from "../../api/axios";
+
+// const AddProduct = () => {
+//   const [name, setName] = useState("");
+//   const [serialNumber, setSerialNumber] = useState("");
+//   const [batchNumber, setBatchNumber] = useState("");
+//   const [manufactureDate, setManufactureDate] = useState("");
+//   const [expiryDate, setExpiryDate] = useState("");
+//   const [metadata, setMetadata] = useState("");
+//   const [image, setImage] = useState(null);
+
+//   const [qrToken, setQrToken] = useState("");
+//   const [loading, setLoading] = useState("");
+//   const [isUnique, setIsUnique] = useState(true);
+
+//   const navigate = useNavigate();
+
+//   // =========================
+//   // CHECK SERIAL UNIQUE
+//   // =========================
+//   const checkUnique = async () => {
+//     try {
+//       await api.get(`/products/serial/${serialNumber}`, {
+//         headers: {
+//           Authorization: `Bearer ${localStorage.getItem("token")}`,
+//         },
+//       });
+
+//       // If product exists
+//       setIsUnique(false);
+//       return false;
+
+//     } catch (err) {
+
+//       // 404 means serial does not exist
+//       if (err.response && err.response.status === 404) {
+//         setIsUnique(true);
+//         return true;
+//       }
+
+//       console.error("Serial check error:", err);
+//       return false;
+//     }
+//   };
+
+//   // =========================
+//   // HANDLE SUBMIT
+//   // =========================
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     const unique = await checkUnique();
+
+//     if (!unique) {
+//       setLoading("Serial Number already exists!");
+//       return;
+//     }
+
+//     const formData = new FormData();
+
+//     formData.append("name", name);
+//     formData.append("serialNumber", serialNumber);
+//     formData.append("batchNumber", batchNumber);
+//     formData.append("manufactureDate", manufactureDate);
+//     formData.append("expiryDate", expiryDate);
+//     formData.append("metadata", metadata);
+
+//     if (image) {
+//       formData.append("image", image);
+//     }
+
+//     try {
+//       setLoading("Saving product...");
+
+//       const res = await api.post("/products", formData, {
+//         headers: {
+//           "Content-Type": "multipart/form-data",
+//           Authorization: `Bearer ${localStorage.getItem("token")}`,
+//         },
+//       });
+
+//       setQrToken(res.data.qrToken);
+
+//       setLoading("Product added successfully!");
+
+//       // Clear form
+//       setName("");
+//       setSerialNumber("");
+//       setBatchNumber("");
+//       setManufactureDate("");
+//       setExpiryDate("");
+//       setMetadata("");
+//       setImage(null);
+
+//     } catch (err) {
+//       console.error("Add Product Error:", err);
+
+//       if (err.response) {
+//         setLoading(err.response.data.message || "Error saving product");
+//       } else {
+//         setLoading("Server error");
+//       }
+//     }
+//   };
+
+//   return (
+//     <Box
+//       sx={{
+//         backgroundImage: `url(${bgImg})`,
+//         minHeight: "100vh",
+//         display: "flex",
+//         justifyContent: "center",
+//         padding: "40px",
+//       }}
+//     >
+//       <Paper
+//         elevation={6}
+//         sx={{
+//           width: "450px",
+//           padding: "30px",
+//           borderRadius: "15px",
+//         }}
+//       >
+//         <Typography variant="h4" textAlign="center" mb={2}>
+//           Add Product
+//         </Typography>
+
+//         <Divider sx={{ mb: 3 }} />
+
+//         <form onSubmit={handleSubmit}>
+
+//           <TextField
+//             fullWidth
+//             label="Name"
+//             margin="normal"
+//             value={name}
+//             onChange={(e) => setName(e.target.value)}
+//           />
+
+//           <TextField
+//             fullWidth
+//             label="Serial Number"
+//             margin="normal"
+//             value={serialNumber}
+//             onChange={(e) => setSerialNumber(e.target.value)}
+//             error={!isUnique}
+//             helperText={!isUnique ? "Already exists!" : ""}
+//           />
+
+//           <TextField
+//             fullWidth
+//             label="Batch Number"
+//             margin="normal"
+//             value={batchNumber}
+//             onChange={(e) => setBatchNumber(e.target.value)}
+//           />
+
+//           <TextField
+//             fullWidth
+//             type="date"
+//             label="Manufacturing Date"
+//             margin="normal"
+//             InputLabelProps={{ shrink: true }}
+//             value={manufactureDate}
+//             onChange={(e) => setManufactureDate(e.target.value)}
+//           />
+
+//           <TextField
+//             fullWidth
+//             type="date"
+//             label="Expiry Date"
+//             margin="normal"
+//             InputLabelProps={{ shrink: true }}
+//             value={expiryDate}
+//             onChange={(e) => setExpiryDate(e.target.value)}
+//           />
+
+//           <TextField
+//             fullWidth
+//             multiline
+//             minRows={2}
+//             label="Metadata (optional)"
+//             margin="normal"
+//             value={metadata}
+//             onChange={(e) => setMetadata(e.target.value)}
+//           />
+
+//           {/* Upload Image */}
+//           <Button
+//             variant="outlined"
+//             component="label"
+//             fullWidth
+//             sx={{ mt: 2 }}
+//           >
+//             Upload Image
+
+//             <input
+//               type="file"
+//               hidden
+//               accept="image/*"
+//               onChange={(e) => setImage(e.target.files[0])}
+//             />
+//           </Button>
+
+//           {image && (
+//             <img
+//               src={URL.createObjectURL(image)}
+//               alt="preview"
+//               style={{
+//                 width: "100%",
+//                 marginTop: "15px",
+//                 borderRadius: "10px",
+//               }}
+//             />
+//           )}
+
+//           {/* QR Code */}
+//           {qrToken && (
+//             <Box sx={{ textAlign: "center", mt: 3 }}>
+//               <QRCode value={qrToken} size={150} />
+
+//               <Typography sx={{ mt: 1 }}>
+//                 QR Token: {qrToken}
+//               </Typography>
+//             </Box>
+//           )}
+
+//           {loading && (
+//             <Typography textAlign="center" sx={{ mt: 2 }}>
+//               {loading}
+//             </Typography>
+//           )}
+
+//           <Button
+//             type="submit"
+//             variant="contained"
+//             fullWidth
+//             sx={{ mt: 3 }}
+//           >
+//             Submit
+//           </Button>
+
+//           <Button
+//             fullWidth
+//             sx={{ mt: 1 }}
+//             onClick={() => navigate(-1)}
+//           >
+//             Back
+//           </Button>
+
+//         </form>
+//       </Paper>
+//     </Box>
+//   );
+// };
+
+// export default AddProduct;
+
+
+
+
 import {
   Box,
   Paper,
@@ -1056,14 +1491,19 @@ import {
   Button,
   Divider,
 } from "@mui/material";
+
 import bgImg from "../../img/bg.png";
 import QRCode from "qrcode.react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+
 import api from "../../api/axios";
 
+// ⭐ BLOCKCHAIN
+import { connectWallet } from "../../blockchain/connectWallet";
+
 const AddProduct = () => {
+
   const [name, setName] = useState("");
   const [serialNumber, setSerialNumber] = useState("");
   const [batchNumber, setBatchNumber] = useState("");
@@ -1078,51 +1518,225 @@ const AddProduct = () => {
 
   const navigate = useNavigate();
 
+  /* =========================
+     CHECK SERIAL UNIQUE
+  ========================= */
   const checkUnique = async () => {
-    try {
-      const res = await api.get(`/products/serial/${serialNumber}`);
 
-      if (res.data.exists) {
-        setIsUnique(false);
-        return false;
+    try {
+
+      await api.get(
+        `/products/serial/${serialNumber}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      // PRODUCT EXISTS
+      setIsUnique(false);
+
+      return false;
+
+    } catch (err) {
+
+      // 404 → UNIQUE
+      if (
+        err.response &&
+        err.response.status === 404
+      ) {
+        setIsUnique(true);
+
+        return true;
       }
 
-      setIsUnique(true);
-      return true;
-    } catch (err) {
-      console.error("Serial check error:", err);
+      console.error(
+        "Serial check error:",
+        err
+      );
+
       return false;
     }
   };
 
+  /* =========================
+     HANDLE SUBMIT
+  ========================= */
   const handleSubmit = async (e) => {
+
     e.preventDefault();
 
-    const unique = await checkUnique();
-    if (!unique) return;
+    const unique =
+      await checkUnique();
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("serialNumber", serialNumber);
-    formData.append("batchNumber", batchNumber);
-    formData.append("manufactureDate", manufactureDate);
-    formData.append("expiryDate", expiryDate);
-    formData.append("metadata", metadata);
-    formData.append("image", image);
+    if (!unique) {
+
+      setLoading(
+        "Serial Number already exists!"
+      );
+
+      return;
+    }
 
     try {
-      setLoading("Saving product...");
 
-      const res = await api.post("/products", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      /* =========================
+         CONNECT METAMASK
+      ========================= */
+      setLoading(
+        "Connecting MetaMask..."
+      );
 
-      setQrToken(res.data.qrToken);
-      setLoading("Product added successfully!");
+      const contract =
+        await connectWallet();
+
+      if (!contract) {
+
+        setLoading(
+          "MetaMask connection failed"
+        );
+
+        return;
+      }
+
+      /* =========================
+         BLOCKCHAIN TRANSACTION
+      ========================= */
+      setLoading(
+        "Waiting for MetaMask confirmation..."
+      );
+
+      // ⭐ METAMASK POPUP
+      const tx =
+        await contract.addProduct(
+          name,
+          serialNumber
+        );
+
+      setLoading(
+        "Transaction pending..."
+      );
+
+      // WAIT FOR BLOCKCHAIN
+      await tx.wait();
+
+      console.log(
+        "Blockchain transaction successful"
+      );
+
+      /* =========================
+         SAVE TO DATABASE
+      ========================= */
+      const formData =
+        new FormData();
+
+      formData.append(
+        "name",
+        name
+      );
+
+      formData.append(
+        "serialNumber",
+        serialNumber
+      );
+
+      formData.append(
+        "batchNumber",
+        batchNumber
+      );
+
+      formData.append(
+        "manufactureDate",
+        manufactureDate
+      );
+
+      formData.append(
+        "expiryDate",
+        expiryDate
+      );
+
+      formData.append(
+        "metadata",
+        metadata
+      );
+
+      if (image) {
+
+        formData.append(
+          "image",
+          image
+        );
+      }
+
+      setLoading(
+        "Saving product in database..."
+      );
+
+      const res =
+        await api.post(
+          "/products",
+          formData,
+          {
+            headers: {
+              "Content-Type":
+                "multipart/form-data",
+
+              Authorization:
+                `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+
+      setQrToken(
+        res.data.qrToken
+      );
+
+      setLoading(
+        "Product added successfully!"
+      );
+
+      /* =========================
+         CLEAR FORM
+      ========================= */
+      setName("");
+      setSerialNumber("");
+      setBatchNumber("");
+      setManufactureDate("");
+      setExpiryDate("");
+      setMetadata("");
+      setImage(null);
 
     } catch (err) {
-      console.error(err);
-      setLoading("Error saving product");
+
+      console.error(
+        "Add Product Error:",
+        err
+      );
+
+      // USER REJECTED METAMASK
+      if (err.code === 4001) {
+
+        setLoading(
+          "Transaction rejected in MetaMask"
+        );
+
+        return;
+      }
+
+      if (err.response) {
+
+        setLoading(
+          err.response.data.message ||
+          "Error saving product"
+        );
+
+      } else {
+
+        setLoading(
+          "Blockchain transaction failed"
+        );
+      }
     }
   };
 
@@ -1138,65 +1752,189 @@ const AddProduct = () => {
     >
       <Paper
         elevation={6}
-        sx={{ width: "450px", padding: "30px", borderRadius: "15px" }}
+        sx={{
+          width: "450px",
+          padding: "30px",
+          borderRadius: "15px",
+        }}
       >
-        <Typography variant="h4" textAlign="center" mb={2}>
+        <Typography
+          variant="h4"
+          textAlign="center"
+          mb={2}
+        >
           Add Product
         </Typography>
 
         <Divider sx={{ mb: 3 }} />
 
         <form onSubmit={handleSubmit}>
-          <TextField fullWidth label="Name" margin="normal" value={name}
-            onChange={(e) => setName(e.target.value)} />
 
-          <TextField fullWidth label="Serial Number" margin="normal"
-            value={serialNumber} onChange={(e) => setSerialNumber(e.target.value)}
-            error={!isUnique} helperText={!isUnique ? "Already exists!" : ""} />
+          <TextField
+            fullWidth
+            label="Name"
+            margin="normal"
+            value={name}
+            onChange={(e) =>
+              setName(e.target.value)
+            }
+          />
 
-          <TextField fullWidth label="Batch Number" margin="normal"
-            value={batchNumber} onChange={(e) => setBatchNumber(e.target.value)} />
+          <TextField
+            fullWidth
+            label="Serial Number"
+            margin="normal"
+            value={serialNumber}
+            onChange={(e) =>
+              setSerialNumber(e.target.value)
+            }
+            error={!isUnique}
+            helperText={
+              !isUnique
+                ? "Already exists!"
+                : ""
+            }
+          />
 
-          <TextField fullWidth type="date" label="Manufacturing Date"
-            margin="normal" InputLabelProps={{ shrink: true }}
-            value={manufactureDate} onChange={(e) => setManufactureDate(e.target.value)} />
+          <TextField
+            fullWidth
+            label="Batch Number"
+            margin="normal"
+            value={batchNumber}
+            onChange={(e) =>
+              setBatchNumber(e.target.value)
+            }
+          />
 
-          <TextField fullWidth type="date" label="Expiry Date"
-            margin="normal" InputLabelProps={{ shrink: true }}
-            value={expiryDate} onChange={(e) => setExpiryDate(e.target.value)} />
+          <TextField
+            fullWidth
+            type="date"
+            label="Manufacturing Date"
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={manufactureDate}
+            onChange={(e) =>
+              setManufactureDate(
+                e.target.value
+              )
+            }
+          />
 
-          <TextField fullWidth multiline minRows={2}
-            label="Metadata (optional)" margin="normal"
-            value={metadata} onChange={(e) => setMetadata(e.target.value)} />
+          <TextField
+            fullWidth
+            type="date"
+            label="Expiry Date"
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={expiryDate}
+            onChange={(e) =>
+              setExpiryDate(
+                e.target.value
+              )
+            }
+          />
 
-          {/* Upload image */}
-          <Button variant="outlined" component="label" fullWidth sx={{ mt: 2 }}>
+          <TextField
+            fullWidth
+            multiline
+            minRows={2}
+            label="Metadata (optional)"
+            margin="normal"
+            value={metadata}
+            onChange={(e) =>
+              setMetadata(
+                e.target.value
+              )
+            }
+          />
+
+          {/* IMAGE */}
+          <Button
+            variant="outlined"
+            component="label"
+            fullWidth
+            sx={{ mt: 2 }}
+          >
             Upload Image
-            <input type="file" hidden onChange={(e) => setImage(e.target.files[0])} />
+
+            <input
+              type="file"
+              hidden
+              accept="image/*"
+              onChange={(e) =>
+                setImage(
+                  e.target.files[0]
+                )
+              }
+            />
           </Button>
 
           {image && (
-            <img src={URL.createObjectURL(image)} alt="preview"
-              style={{ width: "100%", marginTop: "15px", borderRadius: "10px" }} />
+            <img
+              src={URL.createObjectURL(image)}
+              alt="preview"
+              style={{
+                width: "100%",
+                marginTop: "15px",
+                borderRadius: "10px",
+              }}
+            />
           )}
 
-          {/* QR After save */}
+          {/* QR */}
           {qrToken && (
-            <Box sx={{ textAlign: "center", mt: 3 }}>
-              <QRCode value={qrToken} size={150} />
-              <Typography sx={{ mt: 1 }}>QR Token: {qrToken}</Typography>
+            <Box
+              sx={{
+                textAlign: "center",
+                mt: 3,
+              }}
+            >
+              <QRCode
+                value={qrToken}
+                size={150}
+              />
+
+              <Typography sx={{ mt: 1 }}>
+                QR Token: {qrToken}
+              </Typography>
             </Box>
           )}
 
-          {loading && <Typography textAlign="center">{loading}</Typography>}
+          {/* STATUS */}
+          {loading && (
+            <Typography
+              textAlign="center"
+              sx={{ mt: 2 }}
+            >
+              {loading}
+            </Typography>
+          )}
 
-          <Button type="submit" variant="contained" fullWidth sx={{ mt: 3 }}>
+          {/* SUBMIT */}
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            sx={{ mt: 3 }}
+          >
             Submit
           </Button>
 
-          <Button fullWidth sx={{ mt: 1 }} onClick={() => navigate(-1)}>
+          {/* BACK */}
+          <Button
+            fullWidth
+            sx={{ mt: 1 }}
+            onClick={() =>
+              navigate(-1)
+            }
+          >
             Back
           </Button>
+
         </form>
       </Paper>
     </Box>
