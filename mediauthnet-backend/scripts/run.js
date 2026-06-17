@@ -1,5 +1,5 @@
 const main = async () => {
-    const productContractFactory = await hre.ethers.getContractFactory("Identeefi");
+    const productContractFactory = await hre.ethers.getContractFactory("MediAuthNet");
     const productContract = await productContractFactory.deploy();
     await productContract.deployed();
     console.log("Contract deployed to:", productContract.address);
