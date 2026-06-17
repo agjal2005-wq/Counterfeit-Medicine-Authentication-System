@@ -96,9 +96,7 @@ function verifyToken(token) {
   }
 }
 
-/* -----------------------------
-   ⭐ MAIN PREDICT API
------------------------------- */
+//ignore ml part
 router.post("/", auth, upload.single("image"), async (req, res) => {
   try {
     /* -----------------------------
