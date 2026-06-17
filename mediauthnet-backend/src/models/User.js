@@ -61,7 +61,7 @@ const userSchema = new mongoose.Schema(
       default: "user",
     },
 
-    // ⭐ NEW: For OTP Verification
+    // For OTP Verification
     otp: {
       type: String,
       default: null,
@@ -72,7 +72,7 @@ const userSchema = new mongoose.Schema(
       default: null,
     },
 
-    // ⭐ NEW: Email must be verified before login
+    //  Email must be verified before login
     isVerified: {
       type: Boolean,
       default: false,
