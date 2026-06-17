@@ -52,7 +52,7 @@
 // // GET → Verify product by QR token (public route)
 // router.get("/verify/:qrToken", verifyQR);
 
-// // ⭐ NEW → Find product using serial number
+// //  NEW → Find product using serial number
 // router.get("/serial/:serialNumber", auth, getProductBySerial);
 
 // // GET → Get single product details
